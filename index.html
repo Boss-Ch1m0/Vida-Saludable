@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Vida Saludable</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(#ffffff, #eaf5ee);
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #3e8e5a;
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2em;
+      color: #6b7280;
+      margin-bottom: 40px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .hero img {
+      max-width: 320px;
+      width: 100%;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+
+    .inputs {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .input-group input {
+      width: 200px;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .input-group input:focus {
+      border-color: #3e8e5a;
+    }
+
+    button {
+      background-color: #3e8e5a;
+      color: white;
+      border: none;
+      padding: 15px 50px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #327247;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Vida Saludable</h1>
+    <p class="subtitle">
+      Obtén tu plan personalizado de comidas y ejercicios
+    </p>
+
+    <!-- Imagen ilustrativa -->
+    <div class="hero">
+      <!-- Puedes reemplazar esta imagen por la de Canva -->
+      <img src="https://via.placeholder.com/350x350?text=Vida+Saludable" alt="Vida saludable">
+    </div>
+
+    <!-- Tarjeta -->
+    <div class="card">
+      <div class="inputs">
+        <div class="input-group">
+          <label for="peso">Peso (kg)</label>
+          <input type="number" id="peso" placeholder="Ej: 70" min="30" max="300">
+        </div>
+
+        <div class="input-group">
+          <label for="altura">Altura (cm)</label>
+          <input type="number" id="altura" placeholder="Ej: 170" min="100" max="250">
+        </div>
+      </div>
+
+      <button onclick="comenzar()">Comenzar</button>
+    </div>
+
+    <footer>
+      © 2025 Vida Saludable · Planes de bienestar
+    </footer>
+  </div>
+
+  <script>
+    function comenzar() {
+      const peso = document.getElementById("peso").value;
+      const altura = document.getElementById("altura").value;
+
+      if (peso === "" || altura === "") {
+        alert("Por favor ingresa tu peso y altura");
+        return;
+      }
+
+      // Redirección a la segunda página con datos
+      window.location.href = `plan.html?peso=${peso}&altura=${altura}`;
+    }
+  </script>
+
+</body>
+</html>
