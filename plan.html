@@ -1,1 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Vida Saludable | Ver mi plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6efe8;
+      --card:#fffaf4;
+      --primary:#d9a679;
+      --primary-dark:#c89263;
+      --text:#4b3f35;
+      --accent:#b08968;
+      --success:#6fbf8e;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      background:var(--bg);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family:'Poppins', sans-serif;
+      color:var(--text);
+    }
+
+    .container{width:420px;}
+
+    h1{
+      font-family:'Playfair Display', serif;
+      text-align:center;
+      margin-bottom:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:20px;
+      padding:22px;
+      margin-bottom:20px;
+      border:2px solid var(--primary);
+      box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .card h2{
+      font-family:'Playfair Display', serif;
+      color:var(--accent);
+      margin-bottom:12px;
+    }
+
+    label{
+      font-size:14px;
+      display:block;
+      margin-bottom:6px;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid #d8c7b5;
+      margin-bottom:15px;
+    }
+
+    .btn{
+      width:100%;
+      padding:14px;
+      background:var(--primary-dark);
+      color:white;
+      border:none;
+      border-radius:18px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .btn:hover{background:var(--primary);}
+
+    .hidden{display:none;}
+
+    ul{list-style:none;padding:0;}
+
+    li{
+      padding:6px 0;
+      font-size:14px;
+      border-bottom:1px dashed #e5d6c6;
+    }
+
+    li:last-child{border-bottom:none;}
+
+    .note{
+      font-size:12px;
+      text-align:center;
+      margin-top:10px;
+      color:#7a6a5c;
+      font-style:italic;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Mi Plan Saludable</h1>
+
+  <!-- DATOS -->
+  <div class="card">
+    <h2>🧍 Tus datos</h2>
+
+    <label>Peso (kg)</label>
+    <input type="number" id="peso" placeholder="Ej: 65">
+
+    <label>Altura (cm)</label>
+    <input type="number" id="altura" placeholder="Ej: 165">
+
+    <button class="btn" onclick="mostrarPlan()">Ver recomendaciones</button>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="card hidden" id="alimentacion">
+    <h2>🍽️ Alimentación recomendada</h2>
+    <ul id="listaAlimentos"></ul>
+  </div>
+
+  <div class="card hidden" id="ejercicios">
+    <h2>🏋️ Ejercicio recomendado</h2>
+    <ul id="listaEjercicios"></ul>
+  </div>
+
+  <a href="index.html" class="btn">⬅ Volver al inicio</a>
+
+  <div class="note">
+    La constancia crea resultados duraderos
+  </div>
+
+</div>
+
+<script>
+function mostrarPlan(){
+  const peso = parseFloat(document.getElementById('peso').value);
+  const altura = parseFloat(document.getElementById('altura').value);
+
+  if(!peso || !altura){
+    alert('Ingresa peso y altura');
+    return;
+  }
+
+  const alimentos = document.getElementById('listaAlimentos');
+  const ejercicios = document.getElementById('listaEjercicios');
+
+  alimentos.innerHTML = '';
+  ejercicios.innerHTML = '';
+
+  if(peso < 60){
+    alimentos.innerHTML += '<li>Avena, frutos secos, palta</li>';
+    alimentos.innerHTML += '<li>Proteínas y comidas completas</li>';
+
+    ejercicios.innerHTML += '<li>Caminatas suaves</li>';
+    ejercicios.innerHTML += '<li>Fuerza ligera</li>';
+  }
+  else if(peso <= 80){
+    alimentos.innerHTML += '<li>Proteínas magras</li>';
+    alimentos.innerHTML += '<li>Verduras y carbohidratos integrales</li>';
+
+    ejercicios.innerHTML += '<li>Cardio moderado</li>';
+    ejercicios.innerHTML += '<li>Rutina funcional</li>';
+  }
+  else{
+    alimentos.innerHTML += '<li>Comidas ligeras y fibra</li>';
+    alimentos.innerHTML += '<li>Control de porciones</li>';
+
+    ejercicios.innerHTML += '<li>Cardio diario</li>';
+    ejercicios.innerHTML += '<li>Bajo impacto</li>';
+  }
+
+  document.getElementById('alimentacion').classList.remove('hidden');
+  document.getElementById('ejercicios').classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
