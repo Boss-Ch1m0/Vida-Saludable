@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Vida Saludable | Tu progreso</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6efe8;
+      --card:#fffaf4;
+      --primary:#d9a679;
+      --accent:#b08968;
+      --text:#4b3f35;
+      --success:#6fbf8e;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      background:var(--bg);
+      font-family:'Poppins', sans-serif;
+      color:var(--text);
+      display:flex;
+      justify-content:center;
+      padding:30px;
+    }
+
+    .container{
+      width:900px;
+    }
+
+    h1{
+      font-family:'Playfair Display', serif;
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    .calendar{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .month{
+      background:var(--card);
+      border-radius:18px;
+      border:2px solid var(--primary);
+      padding:15px;
+    }
+
+    .month h2{
+      text-align:center;
+      font-family:'Playfair Display', serif;
+      font-size:18px;
+      margin-bottom:10px;
+      color:var(--accent);
+    }
+
+    .days{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:4px;
+      font-size:12px;
+      text-align:center;
+    }
+
+    .day{
+      padding:6px 0;
+      border-radius:8px;
+    }
+
+    .checked{
+      background:var(--success);
+      color:white;
+      font-weight:600;
+    }
+
+    .btn{
+      display:block;
+      margin:30px auto 0;
+      padding:14px 30px;
+      background:var(--primary);
+      color:white;
+      border-radius:20px;
+      text-decoration:none;
+      width:fit-content;
+      font-weight:600;
+    }
+
+    .btn:hover{opacity:0.9;}
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Tu progreso anual ✔</h1>
+
+  <div class="calendar" id="calendar"></div>
+
+  <a href="index.html" class="btn">⬅ Volver al inicio</a>
+</div>
+
+<script>
+const year = new Date().getFullYear();
+const calendar = document.getElementById("calendar");
+const completedDays = JSON.parse(localStorage.getItem("rutinaCumplida")) || [];
+
+const months = [
+  "Enero","Febrero","Marzo","Abril","Mayo","Junio",
+  "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
+];
+
+months.forEach((month, monthIndex) => {
+  const monthDiv = document.createElement("div");
+  monthDiv.className = "month";
+
+  const title = document.createElement("h2");
+  title.textContent = month;
+  monthDiv.appendChild(title);
+
+  const daysDiv = document.createElement("div");
+  daysDiv.className = "days";
+
+  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+  for(let day = 1; day <= daysInMonth; day++){
+    const dateKey = `${year}-${monthIndex+1}-${day}`;
+    const dayDiv = document.createElement("div");
+    dayDiv.className = "day";
+    dayDiv.textContent = day;
+
+    if(completedDays.includes(dateKey)){
+      dayDiv.classList.add("checked");
+      dayDiv.textContent = "✔";
+    }
+
+    daysDiv.appendChild(dayDiv);
+  }
+
+  monthDiv.appendChild(daysDiv);
+  calendar.appendChild(monthDiv);
+});
+</script>
+
+</body>
+</html>
